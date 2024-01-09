@@ -18,7 +18,7 @@ services:
     ports:
       - 9870:9870
       - 9000:9000
-      - 8888:8888
+      - 9999:8888
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
       # TODO: Voeg hier extra folders toe om ze zichtbaar te maken in je containers, deze hebben de volgende structuur:
