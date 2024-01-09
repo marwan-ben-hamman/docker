@@ -34,7 +34,7 @@ Open de folder in commandline of powershell.
 Bouw nu de gewenste docker containers door de correcte yml file te builden.
 Dit kan doormiddel van het volgende commando
 ````
-  docker-compose -f "{filename van het uit te voeren docker bestand}" build
+  docker-compose -f "docker-compose.yml" build
 ````
 
 ## Stap 5: Starten van de containers
@@ -43,7 +43,7 @@ Open de folder in commandline of powershell.
 
 Start alle containers via het volgende commando
 ````
-  docker-compose -f "{filename van het uit te voeren docker bestand}" up
+  docker-compose -f "docker-compose-light.yml" up
 ````
 
 ## Mogelijke fouten
