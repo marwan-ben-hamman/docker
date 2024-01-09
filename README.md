@@ -57,4 +57,4 @@ Oplossing: open de .sh file in visual studio code en wissel crlf naar lf -> rech
 Versienummer in hadoop.env is niet correct overgenomen.
 
 Oplossing: Bekijk de hadoop configuration files en zorg ervoor dat het versienummer uit hadoop.env hetzelfde is als in de hadoop folders.
-Dit kan je controleren met de HADOOP_MAPRED_HOME environment variabele die 3.2.1 zou moeten zijn.
+Dit kan je controleren met de HADOOP_MAPRED_HOME environment variabele die 3.3.6 zou moeten zijn.
