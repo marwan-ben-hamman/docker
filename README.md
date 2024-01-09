@@ -1,6 +1,9 @@
 # Installatieprocedure nodige tools
 
-Deze installatieprocedure is gebaseerd op de docker containers van BigData Europe (zie https://github.com/big-data-europe)
+Deze installatieprocedure is gebaseerd op de docker containers van BigData Europe (zie https://github.com/big-data-europe).
+
+OPGEPAST: Zorg ervoor dat je containers ofwel niet automatisch starten of dat docker desktop niet zomaar opstart bij het opstarten van je pc.
+De containers kunnen samen namelijk redelijk wat resources gebruiken.
 
 ## Stap 1: Installeren docker desktop
 
@@ -45,6 +48,22 @@ Start alle containers via het volgende commando
 ````
   docker-compose -f "docker-compose-light.yml" up
 ````
+
+## Stap 6: Controle of installatie gelukt is
+
+### Controle 1: Via docker desktop
+
+Bekijk in docker desktop of je de volgende containers ziet als gestart.
+Je zou dus een gelijkaardig beeld moeten krijgen als hieronder:
+
+![docker desktop](controle-images/docker-desktop.png)
+
+### Controle 2: Via namenode
+
+Ga naar localhost:9870 en je zou onderstaande scherm moeten zien.
+
+![docker desktop](controle-images/namenode-1.png)
+
 
 ## Mogelijke fouten
 
