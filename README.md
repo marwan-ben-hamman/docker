@@ -1,6 +1,6 @@
 # Installatieprocedure nodige tools
 
-Deze installatieprocedure is gebaseerd op de docker containers van BigData Europe (zie https://github.com/big-data-europe/docker-spark)
+Deze installatieprocedure is gebaseerd op de docker containers van BigData Europe (zie https://github.com/big-data-europe)
 
 ## Stap 1: Installeren docker desktop
 
