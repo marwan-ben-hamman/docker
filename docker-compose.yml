@@ -1,0 +1,117 @@
+version: "3"
+
+services:
+  hadoop-base:
+    build: base
+    image: base
+    container_name: hadoop-base
+    deploy:
+      replicas: 1
+
+  namenode:
+    build: namenode
+    image: namenode
+    depends_on:
+      - hadoop-base
+    container_name: namenode
+    restart: always
+    ports:
+      - 9870:9870
+      - 9000:9000
+      - 8888:8888
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+      # TODO: Voeg hier extra folders toe om ze zichtbaar te maken in je containers, deze hebben de volgende structuur:
+      # {local absolute path}:/home/bigdata/{folderstructuur waar je ze wil hebben}
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop.env
+
+  datanode:
+    build: datanode
+    image: datanode
+    depends_on:
+      - namenode
+    container_name: datanode
+    restart: always
+    volumes:
+      - hadoop_datanode:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    env_file:
+      - ./hadoop.env
+
+  datanode2:
+    image: datanode
+    depends_on:
+      - datanode
+    container_name: datanode2
+    restart: always
+    volumes:
+      - hadoop_datanode2:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    env_file:
+      - ./hadoop.env
+
+  datanode3:
+    image: datanode
+    depends_on:
+      - datanode
+    container_name: datanode3
+    restart: always
+    volumes:
+      - hadoop_datanode3:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    env_file:
+      - ./hadoop.env
+
+  datanode4:
+    image: datanode
+    depends_on:
+      - datanode
+    container_name: datanode4
+    restart: always
+    volumes:
+      - hadoop_datanode4:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    env_file:
+      - ./hadoop.env
+  
+  resourcemanager:
+    build: resourcemanager
+    image: resourcemanager
+    depends_on:
+      - namenode
+    container_name: resourcemanager
+    restart: always
+    ports:
+      - 8032:8032
+      - 8088:8088
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 datanode2:9864 datanode3:9864 datanode4:9864"
+    env_file:
+      - ./hadoop.env
+
+  nodemanager1:
+    depends_on:
+      - namenode
+    build: nodemanager
+    image: nodemanager
+    container_name: nodemanager
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 datanode2:9864 datanode3:9864 datanode4:9864 resourcemanager:8088"
+    env_file:
+      - ./hadoop.env
+      
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:
+  hadoop_datanode2:
+  hadoop_datanode3:
+  hadoop_datanode4:
+  hadoop_historyserver:
