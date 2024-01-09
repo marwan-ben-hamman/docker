@@ -61,9 +61,34 @@ Je zou dus een gelijkaardig beeld moeten krijgen als hieronder:
 ### Controle 2: Via namenode
 
 Ga naar localhost:9870 en je zou onderstaande scherm moeten zien.
+Dit scherm is de file-explorer van het gedistribueerde filesysteem en kan gebruikt worden om bestanden te bekijken en te manipuleren.
+Ook krijg je hier een overzicht van je clusterresources.
 
-![docker desktop](controle-images/namenode-1.png)
+![namenode overview](controle-images/namenode-1.png)
 
+Daarnaast kan je ook zien of de datanodes goed gekoppeld zijn door in de header op de datanodes te klikken.
+In de tabel onderaan zou je dan al je datanodes van je cluster moeten zijn. In het default geval zijn dit er 4 (zie onderstaande figuur).
+
+![namenode number of datanodes](controle-images/namenode-2.png)
+
+### Controle 3: Via YARN
+
+Naast de namenode gaan we ook applicaties uitvoeren op de cluster.
+Dit gebeurt via de resource manager of de YARN-applicatie.
+Deze kan je controleren door middel van de webpagina: localhost:8088
+Als deze goed werkt zou je onderstaande figuur te zien moeten krijgen:
+
+![yarn](controle-images/yarn.png)
+
+### Controle 3: Via Jupyterlab
+
+Ten slotte gaan we nog steeds werken met python code die uitgevoerd wordt in jupyter notebooks.
+Hiervoor is er ook een jupyterlab installatie gebeurd om een volledigere IDE te krijgen.
+Deze kan je controleren door te surfen naar de pagina localhost:9999.
+Hierbij zou je onderstaande figuur te zien moeten krijgen.
+Controleer hier ook of je volumes correct gekoppeld zijn.
+
+![jupyter](controle-images/jupyter.png)
 
 ## Mogelijke fouten
 
