@@ -15,6 +15,8 @@ services:
       - hadoop-base
     container_name: namenode
     restart: always
+    networks:
+      - cluster
     ports:
       - 9870:9870
       - 9000:9000
@@ -35,6 +37,8 @@ services:
       - namenode
     container_name: datanode
     restart: always
+    networks:
+      - cluster
     volumes:
       - hadoop_datanode:/hadoop/dfs/data
     environment:
@@ -48,6 +52,8 @@ services:
       - datanode
     container_name: datanode2
     restart: always
+    networks:
+      - cluster
     volumes:
       - hadoop_datanode2:/hadoop/dfs/data
     environment:
@@ -61,6 +67,8 @@ services:
       - datanode
     container_name: datanode3
     restart: always
+    networks:
+      - cluster
     volumes:
       - hadoop_datanode3:/hadoop/dfs/data
     environment:
@@ -74,6 +82,8 @@ services:
       - datanode
     container_name: datanode4
     restart: always
+    networks:
+      - cluster
     volumes:
       - hadoop_datanode4:/hadoop/dfs/data
     environment:
@@ -88,6 +98,8 @@ services:
       - namenode
     container_name: resourcemanager
     restart: always
+    networks:
+      - cluster
     ports:
       - 8032:8032
       - 8088:8088
@@ -102,11 +114,43 @@ services:
     build: nodemanager
     image: nodemanager
     container_name: nodemanager
+    ports:
+      - 8042:8042
     restart: always
     environment:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 datanode2:9864 datanode3:9864 datanode4:9864 resourcemanager:8088"
     env_file:
       - ./hadoop.env
+  
+  historyserver:
+    build: historyserver
+    image: historyserver
+    depends_on:
+      - namenode
+    container_name: historyserver
+    restart: always
+    networks:
+      - cluster
+    ports:
+      - 8188:8188
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
+    volumes:
+      - hadoop_historyserver:/hadoop/yarn/timeline
+    env_file:
+      - ./hadoop.env
+  
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    networks:
+      - cluster
+    ports:
+     - 27018:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
       
 volumes:
   hadoop_namenode:

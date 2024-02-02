@@ -15,11 +15,14 @@ RUN pip install jupyterlab
 EXPOSE 8888
 
 # DATA SCIENCE INSTALLS
-RUN pip install opendatasets pandas
+RUN pip install opendatasets pandas scikit-learn matplotlib seaborn
 
 #BIG DATA INSTALLS
 RUN pip install hdfs mrjob
 EXPOSE 4040
+
+#MONGODB INSTALLS
+RUN pip install pymongo
 
 ADD run.sh /run.sh
 RUN chmod a+x /run.sh

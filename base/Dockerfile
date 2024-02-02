@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 	
 # Install python
 RUN apt-get update && apt-get install -y pip python3
-RUN pip install pyspark
+RUN pip install pyspark pyarrow
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
