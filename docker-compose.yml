@@ -116,6 +116,8 @@ services:
     container_name: nodemanager
     ports:
       - 8042:8042
+    networks:
+      - cluster
     restart: always
     environment:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 datanode2:9864 datanode3:9864 datanode4:9864 resourcemanager:8088"
