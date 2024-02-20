@@ -159,3 +159,6 @@ volumes:
   hadoop_datanode3:
   hadoop_datanode4:
   hadoop_historyserver:
+
+networks:
+  cluster:
