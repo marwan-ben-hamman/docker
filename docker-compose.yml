@@ -24,7 +24,8 @@ services:
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
       # TODO: Voeg hier extra folders toe om ze zichtbaar te maken in je containers, deze hebben de volgende structuur:
-      # {local absolute path}:/home/bigdata/{folderstructuur waar je ze wil hebben}
+      - C:\Users\marwa\Desktop\Big Data:/home/bigdata/oefeningen
+      
     environment:
       - CLUSTER_NAME=test
     env_file:
